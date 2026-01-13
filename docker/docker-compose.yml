@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  rcan-train:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        BASE_IMAGE: pytorch/pytorch:2.9.1-cuda13.0-cudnn9-runtime
+    image: sisr-rcan:latest
+    container_name: sisr
+    working_dir: /docker
+    command: python -u train.py
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./:/app:rw
+      - ./data:/app/data:ro
+      - ./model_checkpoints:/app/model_checkpoints:rw
+      - ./tmp_model_checkpoints:/app/tmp_model_checkpoints:rw
+    gpus: all
+    shm_size: "16g"

@@ -1,0 +1,9 @@
+model_checkpoints
+tmp_model_checkpoints
+data
+
+.ipynb_checkpoints
+*.pth
+*.png
+
+__pycache__
