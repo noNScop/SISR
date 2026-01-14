@@ -1,0 +1,12 @@
+# data
+ram_limit_train: 32
+ram_limit_valid: 8
+
+# model
+scale: 2
+
+# train
+epochs: 10
+batch_size: 16
+lr: 5e-5
+step_size: 2

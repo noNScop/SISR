@@ -1,0 +1,19 @@
+services:
+  rcan-train:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        BASE_IMAGE: pytorch/pytorch:2.9.1-cuda13.0-cudnn9-runtime
+    image: sisr:latest
+    working_dir: /app
+    command: python -u docker/train.py --config docker/train.yaml
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./:/app:rw
+      - ./data:/app/data:ro # Read only dataset
+      - ./model_checkpoints:/app/model_checkpoints:rw
+      - ./tmp_model_checkpoints:/app/tmp_model_checkpoints:rw
+    gpus: all
+    shm_size: "16g"

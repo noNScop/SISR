@@ -62,7 +62,7 @@ def valid_step(model, dataloader, loss_fn):
     return avg_psnr, avg_ssim, avg_lpips
 
 def train(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn, epochs, start_checkpoint=None):
-    os.makedirs('../tmp_model_checkpoints', exist_ok=True)
+    os.makedirs('./tmp_model_checkpoints', exist_ok=True)
     counter = 0 # count epochs without printing training stats
     scaler = GradScaler('cuda')
     
@@ -113,7 +113,7 @@ def train(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn, epoc
                 'scheduler_state_dict': scheduler.state_dict(),
                 'scaler_state_dict': scaler.state_dict()
             }
-            torch.save(checkpoint, f'../tmp_model_checkpoints/best_psnr.pth')
+            torch.save(checkpoint, f'./tmp_model_checkpoints/best_psnr.pth')
 
         if valid_ssim > best_ssim:
             progress = True
@@ -128,7 +128,7 @@ def train(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn, epoc
                 'scheduler_state_dict': scheduler.state_dict(),
                 'scaler_state_dict': scaler.state_dict()
             }
-            torch.save(checkpoint, f'../tmp_model_checkpoints/best_ssim.pth')
+            torch.save(checkpoint, f'./tmp_model_checkpoints/best_ssim.pth')
 
         if valid_lpips < best_lpips:
             progress = True
@@ -143,7 +143,7 @@ def train(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn, epoc
                 'scheduler_state_dict': scheduler.state_dict(),
                 'scaler_state_dict': scaler.state_dict()
             }
-            torch.save(checkpoint, f'../tmp_model_checkpoints/best_lpips.pth')
+            torch.save(checkpoint, f'./tmp_model_checkpoints/best_lpips.pth')
 
         if epoch == epochs-1:
             checkpoint = {
@@ -156,7 +156,7 @@ def train(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn, epoc
                 'scheduler_state_dict': scheduler.state_dict(),
                 'scaler_state_dict': scaler.state_dict()
             }
-            torch.save(checkpoint, f'../tmp_model_checkpoints/last.pth')
+            torch.save(checkpoint, f'./tmp_model_checkpoints/last.pth')
             
         if progress or counter >= log_freq:
             counter = 0
