@@ -6,21 +6,21 @@ from torchvision.transforms import v2
 from torch.utils.data import Dataset
 
 
-HR_train_paths = sorted(glob.glob("./data/DIV2K_train_HR/*.png"))
-X2_train_paths = sorted(glob.glob("./data/DIV2K_train_LR_bicubic/X2/*.png"))
-X4_train_paths = sorted(glob.glob("./data/DIV2K_train_LR_bicubic/X4/*.png"))
-X8_train_paths = sorted(glob.glob("./data/DIV2K_train_LR_bicubic/X8/*.png"))
-X16_train_paths = sorted(glob.glob("./data/DIV2K_train_LR_bicubic/X16/*.png"))
-X32_train_paths = sorted(glob.glob("./data/DIV2K_train_LR_bicubic/X32/*.png"))
-X64_train_paths = sorted(glob.glob("./data/DIV2K_train_LR_bicubic/X64/*.png"))
+HR_train_paths = sorted(glob.glob("./data/DIV2K/DIV2K_train_HR/*.png"))
+X2_train_paths = sorted(glob.glob("./data/DIV2K/DIV2K_train_LR_bicubic/X2/*.png"))
+X4_train_paths = sorted(glob.glob("./data/DIV2K/DIV2K_train_LR_bicubic/X4/*.png"))
+X8_train_paths = sorted(glob.glob("./data/DIV2K/DIV2K_train_LR_bicubic/X8/*.png"))
+X16_train_paths = sorted(glob.glob("./data/DIV2K/DIV2K_train_LR_bicubic/X16/*.png"))
+X32_train_paths = sorted(glob.glob("./data/DIV2K/DIV2K_train_LR_bicubic/X32/*.png"))
+X64_train_paths = sorted(glob.glob("./data/DIV2K/DIV2K_train_LR_bicubic/X64/*.png"))
 
-HR_valid_paths = sorted(glob.glob("./data/DIV2K_valid_HR/*.png"))
-X2_valid_paths = sorted(glob.glob("./data/DIV2K_valid_LR_bicubic/X2/*.png"))
-X4_valid_paths = sorted(glob.glob("./data/DIV2K_valid_LR_bicubic/X4/*.png"))
-X8_valid_paths = sorted(glob.glob("./data/DIV2K_valid_LR_bicubic/X8/*.png"))
-X16_valid_paths = sorted(glob.glob("./data/DIV2K_valid_LR_bicubic/X16/*.png"))
-X32_valid_paths = sorted(glob.glob("./data/DIV2K_valid_LR_bicubic/X32/*.png"))
-X64_valid_paths = sorted(glob.glob("./data/DIV2K_valid_LR_bicubic/X64/*.png"))
+HR_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_HR/*.png"))
+X2_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X2/*.png"))
+X4_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X4/*.png"))
+X8_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X8/*.png"))
+X16_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X16/*.png"))
+X32_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X32/*.png"))
+X64_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X64/*.png"))
 
 class RCAN_Dataset(Dataset):
     def __init__(self, target_paths: list[str], scale: int, ram_limit_gb: float = 2.0):
