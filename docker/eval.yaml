@@ -1,0 +1,7 @@
+model: rcan                # "rcan" or "esrgan"
+checkpoint: ./model_checkpoints/RCAN/X2.pth  # optional, can be null
+scale: 2
+
+# dataset paths (directory or glob). Leave empty/null to skip.
+flickr_dir: ./data/Flickr2K-10k/HR
+pokemon_dir: ./data/pokemon/HR
