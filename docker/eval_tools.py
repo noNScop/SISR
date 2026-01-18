@@ -23,7 +23,7 @@ transform = v2.Compose([
 def calc_metrics(model: nn.Module, target_ds: list[str], scale: int):
     transform_target = v2.Compose([
         v2.PILToTensor(),
-        v2.Lambda(lambda x: x/255.0)
+        v2.Lambda(lambda x: x/ 255.0)
     ])
 
     transform_input = v2.Compose([

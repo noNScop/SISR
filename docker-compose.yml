@@ -1,5 +1,5 @@
 services:
-  rcan-train:
+  train-eval:
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -7,7 +7,6 @@ services:
         BASE_IMAGE: pytorch/pytorch:2.9.1-cuda13.0-cudnn9-runtime
     image: sisr:latest
     working_dir: /app
-    command: ["./docker/eval.sh"]
     environment:
       - PYTHONUNBUFFERED=1
     tty: true

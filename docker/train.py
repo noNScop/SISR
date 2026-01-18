@@ -6,8 +6,8 @@ from torch.optim import Adam
 from torch.optim.lr_scheduler import StepLR
 from torch.utils.data import DataLoader
 
-from datasets import RCAN_Dataset, HR_valid_paths, HR_train_paths
-from training_engine import train
+from datasets import SRDataset, HR_valid_paths, HR_train_paths
+from docker.rcan_training import train_rcan
 from architectures import RCAN
 
 import argparse
@@ -51,8 +51,8 @@ def main():
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    valid_ds = RCAN_Dataset(HR_valid_paths, args.scale, ram_limit_gb=args.ram_limit_valid)
-    train_ds = RCAN_Dataset(HR_train_paths, args.scale, ram_limit_gb=args.ram_limit_train)
+    valid_ds = SRDataset(HR_valid_paths, args.scale, ram_limit_gb=args.ram_limit_valid)
+    train_ds = SRDataset(HR_train_paths, args.scale, ram_limit_gb=args.ram_limit_train)
 
     train_dl = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True, num_workers=os.cpu_count()-1)
     valid_dl = DataLoader(valid_ds, batch_size=args.batch_size, shuffle=False, num_workers=os.cpu_count()-1)
@@ -62,7 +62,7 @@ def main():
     optimizer = Adam(model.parameters(), lr=args.lr)
     scheduler = StepLR(optimizer, step_size=args.step_size, gamma=0.5)
 
-    train(model, train_dl, valid_dl, optimizer, scheduler, loss_fn, args.epochs)
+    train_rcan(model, train_dl, valid_dl, optimizer, scheduler, loss_fn, args.epochs)
 
 if __name__ == "__main__":
     main()

@@ -4,4 +4,4 @@ scale: 2
 
 # dataset paths (directory or glob). Leave empty/null to skip.
 flickr_dir: ./data/Flickr2K-10k/HR
-pokemon_dir: ./data/pokemon/HR
+pokemon_dir: ./data/pokemons/HR

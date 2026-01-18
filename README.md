@@ -14,7 +14,14 @@ docker compose build
 docker compose up -d
 
 # run the eval script attached to a TTY (shows tqdm)
-docker compose exec -it rcan-train ./docker/eval.sh
+docker compose exec -it train-eval ./docker/eval.sh
+docker compose exec -it train-eval ./docker/train.sh
 # or open an interactive shell first:
-docker compose exec -it rcan-train bash
+docker compose exec -it train-eval bash
 ./docker/eval.sh
+
+
+docker compose ps        # list running services
+docker compose logs -f   # follow logs
+docker compose stop      # stop containers
+docker compose down      # stop and remove containers

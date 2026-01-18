@@ -122,8 +122,6 @@ def main():
     flickr_paths = _gather_paths(args.flickr_dir)
     pokemon_paths = _gather_paths(args.pokemon_dir)
 
-    print(args.flickr_dir)
-
     if not flickr_paths and not pokemon_paths:
         print("No dataset paths provided (use--config YAML). Exiting.")
         return

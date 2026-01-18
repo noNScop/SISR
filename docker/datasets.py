@@ -22,7 +22,7 @@ X16_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X16/*.pn
 X32_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X32/*.png"))
 X64_valid_paths = sorted(glob.glob("./data/DIV2K/DIV2K_valid_LR_bicubic/X64/*.png"))
 
-class RCAN_Dataset(Dataset):
+class SRDataset(Dataset):
     def __init__(self, target_paths: list[str], scale: int, ram_limit_gb: float = 2.0):
         self.crop_size = scale * 48
         self.scale = scale

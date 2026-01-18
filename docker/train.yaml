@@ -9,4 +9,4 @@ scale: 2
 epochs: 10
 batch_size: 16
 lr: 5e-5
-step_size: 2
+step_size: 400
