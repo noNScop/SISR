@@ -59,7 +59,6 @@ def valid_step(model, dataloader, loss_fn):
             target = target.clamp(0.0, 1.0)
             
             avg_psnr += psnr(logits, target).item()
-            avg_psnr += psnr(logits, target).item()
             avg_ssim += ssim(logits, target).item()
             avg_lpips += lpips(logits, target).item()
 
@@ -73,7 +72,6 @@ def valid_step(model, dataloader, loss_fn):
 
 def train_rcan(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn, epochs, start_checkpoint=None):
     os.makedirs('./tmp_model_checkpoints', exist_ok=True)
-    counter = 0 # count epochs without printing training stats
     scaler = GradScaler('cuda')
     
     # prepare CSV logging directory and file
@@ -81,10 +79,10 @@ def train_rcan(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn,
     data_dir.mkdir(parents=True, exist_ok=True)
     csv_path = data_dir / 'training_log.csv'
     csv_header = ['epoch','train_loss','train_psnr','train_ssim','valid_loss','valid_psnr','valid_ssim','valid_lpips']
-    csv_file = open(csv_path, 'a', newline='')
+
+    csv_file = open(csv_path, 'w', newline='')
     csv_writer = csv.writer(csv_file)
-    if csv_path.stat().st_size == 0:
-        csv_writer.writerow(csv_header)
+    csv_writer.writerow(csv_header)
     
     if start_checkpoint:
         start_epoch = start_checkpoint['epoch']
@@ -97,11 +95,8 @@ def train_rcan(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn,
         best_psnr = 0
         best_ssim = 0
         best_lpips = float('inf')
-        
-    log_freq = (epochs - start_epoch) // 20 # how often to print stats when no progress is made
     
     for epoch in tqdm(range(start_epoch, epochs), desc="Epochs"):
-        counter += 1
         train_loss, train_psnr, train_ssim = train_step(
             model,
             train_dl,
@@ -117,11 +112,8 @@ def train_rcan(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn,
         )
 
         scheduler.step()
-
-        progress = False
         
         if valid_psnr > best_psnr:
-            progress = True
             best_psnr = valid_psnr
             checkpoint = {
                 'epoch': epoch,
@@ -136,7 +128,6 @@ def train_rcan(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn,
             torch.save(checkpoint, f'./tmp_model_checkpoints/best_psnr.pth')
 
         if valid_ssim > best_ssim:
-            progress = True
             best_ssim = valid_ssim
             checkpoint = {
                 'epoch': epoch,
@@ -151,7 +142,6 @@ def train_rcan(model, train_dl, valid_dl, optimizer, scheduler: StepLR, loss_fn,
             torch.save(checkpoint, f'./tmp_model_checkpoints/best_ssim.pth')
 
         if valid_lpips < best_lpips:
-            progress = True
             best_lpips = valid_lpips
             checkpoint = {
                 'epoch': epoch,
