@@ -3,8 +3,8 @@ ram_limit_train: 32
 ram_limit_valid: 8
 
 # model
-model: esrgan # rcan, esrgan_pretrain, esrgan
-pretrained_path: ./tmp_model_checkpoints/ESRGAN_pretrained_X2.pth
+model: rcan # rcan, esrgan_pretrain, esrgan
+pretrained_path: ./tmp_model_checkpoints/ESRGAN_pretrained_X2.pth # Needed for model: "esrgan" only
 scale: 2
 
 # train
