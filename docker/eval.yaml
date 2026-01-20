@@ -1,5 +1,5 @@
 model: esrgan                # "rcan" or "esrgan"
-checkpoint: ./model_checkpoints/RCAN/X2.pth  # optional, can be null
+checkpoint: ./model_checkpoints/ESRGAN/X2.pth  # optional, can be null
 scale: 2
 
 # dataset paths (directory or glob). Leave empty/null to skip.
