@@ -138,10 +138,10 @@ def main():
 
     model.eval()
 
-    if flickr_paths:
-        print(f"Evaluating {args.model.upper()} on Flickr2K ({len(flickr_paths)} images), scale={args.scale}")
-        psnr_val, ssim_val, lpips_val = calc_metrics(model, flickr_paths, args.scale)
-        print(f"Flickr2K -> PSNR: {psnr_val:.4f}, SSIM: {ssim_val:.4f}, LPIPS: {lpips_val:.4f}")
+    # if flickr_paths:
+        # print(f"Evaluating {args.model.upper()} on Flickr2K ({len(flickr_paths)} images), scale={args.scale}")
+        # psnr_val, ssim_val, lpips_val = calc_metrics(model, flickr_paths, args.scale)
+        # print(f"Flickr2K -> PSNR: {psnr_val:.4f}, SSIM: {ssim_val:.4f}, LPIPS: {lpips_val:.4f}")
 
     if pokemon_paths:
         print(f"Evaluating {args.model.upper()} on pokemon ({len(pokemon_paths)} images), scale={args.scale}")

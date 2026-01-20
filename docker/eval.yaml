@@ -1,4 +1,4 @@
-model: rcan                # "rcan" or "esrgan"
+model: esrgan                # "rcan" or "esrgan"
 checkpoint: ./model_checkpoints/RCAN/X2.pth  # optional, can be null
 scale: 2
 
