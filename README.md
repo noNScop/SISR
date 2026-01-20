@@ -3,8 +3,7 @@
 This project uses **Docker Compose** to ensure a reproducible runtime environment with GPU support. Training and evaluation are executed inside a container, while configuration is controlled via YAML files.
 
 ## Data Preparation
-Before anything, the data needs to be downloaded and prepared. Follow the code in `0_Data_Preparation.ipynb`, uncomment what is necessary!
-
+Before anything, the data needs to be downloaded and prepared. Follow the code in `0_Data_Preparation.ipynb`.
 
 ---
 
